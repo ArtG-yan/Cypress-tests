@@ -1,22 +1,22 @@
 describe('Check Student Registration functionality', () => {
-  it('passes', () => {
+  it('Test user registration with valid credentials', () => {
     cy.visit('https://demoqa.com/automation-practice-form')
     cy.url().should('contain', 'demoqa')
     cy.get('#firstName').type('Arthur')
     cy.get('#lastName').type('Ghamboyan')
     cy.get('#userEmail').type('artur@artur.com')
-    cy.get('label[for$=radio-1]').click()
+    cy.get('#gender-radio-1').check({ force: true })
     cy.get('#userNumber').type('1212121212')
     cy.get('#dateOfBirthInput').click()
     cy.get('[class$=year-select]').select('1999')
     cy.get('[class$=month-select]').select('May')
     cy.get('[class$=day--021]').click()
-    cy.get('[for$=checkbox-1]').click()
-    cy.get('[for$=checkbox-2]').click()
+    cy.get('#hobbies-checkbox-1').check({ force: true })
+    cy.get('#hobbies-checkbox-2').check({ force: true })
     cy.get('#currentAddress').type('Vanadzor')
     cy.get('#submit').click()
     cy.get('.modal-content').should('be.visible')
     cy.get('[id$=title-lg]').should('contain','Thanks for submitting the form')
     cy.get('#closeLargeModal').click({ force: true })
   })
-})
+});
